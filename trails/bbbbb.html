@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Cart</title>
+	<!-- ...Other CSS and libraries... -->
+	<script>
+		function removeItem(index) {
+			// Retrieve cart items from localStorage
+			var cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+			// Remove the item at the given index
+			if (index >= 0 && index < cartItems.length) {
+				cartItems.splice(index, 1);
+			}
+
+			// Store the updated cart items in localStorage
+			localStorage.setItem('cartItems', JSON.stringify(cartItems));
+
+			// Reload the page to reflect the changes
+			location.reload();
+		}
+	</script>
+</head>
+<body>
+	<!-- ...Cart page HTML code... -->
+
+	<section>
+		<h2>Cart Items</h2>
+		<div id="cart-items">
+			<!-- Display cart items dynamically -->
+		</div>
+	</section>
+
+	<script>
+		// Retrieve cart items from localStorage
+		var cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+		var cartItemsElement = document.getElementById('cart-items');
+
+		// Check if there are any items in the cart
+		if (cartItems && cartItems.length > 0) {
+			// Loop through the cart items and display them
+			for (var i = 0; i < cartItems.length; i++) {
+				var item = cartItems[i];
+
+				// Create elements to display the item information
+				var itemElement = document.createElement('div');
+				var itemNameElement = document.createElement('h3');
+				var removeButton = document.createElement('button');
+
+				itemNameElement.textContent = item;
+				removeButton.textContent = 'Remove';
+				removeButton.onclick = (function (index) {
+					return function () {
+						removeItem(index);
+					};
+				})(i);
+
+				itemElement.appendChild(itemNameElement);
+				itemElement.appendChild(removeButton);
+				cartItemsElement.appendChild(itemElement);
+			}
+		} else {
+			// Display a message if the cart is empty
+			cartItemsElement.textContent = "Your cart is empty.";
+		}
+	</script>
+</body>
+</html>

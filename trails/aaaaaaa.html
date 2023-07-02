@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>aaaaa home</title>
+	<link rel="stylesheet" type="text/css" href="homestyle.css">
+	<!-- ...Other CSS and libraries... -->
+	<script>
+		function addToCart(itemName) {
+			// Retrieve cart items from localStorage or initialize an empty array
+			var cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+			// Add the item to the cart
+			cartItems.push(itemName);
+
+			// Store the updated cart items in localStorage
+			localStorage.setItem('cartItems', JSON.stringify(cartItems));
+
+			// Provide feedback to the user
+			alert('Item added to cart!');
+
+			// Redirect to the cart page
+			window.location.href = 'bbbbb.html';
+		}
+	</script>
+</head>
+<body>
+	<!-- ...Navbar and other HTML code... -->
+
+	<main>
+		<section class="banner">
+			<!-- ...Banner content... -->
+		</section>
+		<section class="products">
+			<h2>Featured Products</h2>
+			<div class="product-item">
+				<!-- ...Product 1 content... -->
+				<button class="adds" onclick="addToCart('Product 1')">Add to Cart</button>
+			</div>
+			<div class="product-item">
+				<!-- ...Product 2 content... -->
+				<button class="adds" onclick="addToCart('Product 2')">Add to Cart</button>
+			</div>
+			<div class="product-item">
+				<!-- ...Product 3 content... -->
+				 <button class="adds" onclick="addToCart('Product 3')">Add to Cart</button>
+			</div>
+		</section>
+	</main>
+	<!-- ...Footer and closing tags... -->
+</body>
+</html>
